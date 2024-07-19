@@ -11,8 +11,7 @@ export default {
         include: path.join(__dirname, '..', 'src'),
         exclude: [
           /\.(e2e|spec)\.ts$/,
-          /node_modules/,
-          /(ngfactory|ngstyle)\.js/,
+          /node_modules/
         ],
       },
     ],

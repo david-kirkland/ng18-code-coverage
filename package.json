@@ -13,6 +13,7 @@
     "test": "ng test",
     "serve:ssr:ng18-code-coverage": "node dist/ng18-code-coverage/server/server.mjs",
     "e2e": "tsc && nyc ng e2e",
+    "ct": "tsc && nyc cypress run --component",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run"
   },
