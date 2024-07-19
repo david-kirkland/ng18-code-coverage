@@ -11,9 +11,13 @@ import { RouterOutlet } from '@angular/router';
 export class AppComponent {
   title = 'ng18-code-coverage';
   testData = 1;
+  unreachableData = 1;
 
   test() {
-    console.log('test');
     this.testData++;
+  }
+
+  unreachableFromUI() {
+    this.unreachableData++;
   }
 }

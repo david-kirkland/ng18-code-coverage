@@ -20,7 +20,6 @@
             "outputPath": "dist/ng18-code-coverage",
             "index": "src/index.html",
             "main": "src/main.ts",
-            //"browser": "src/main.ts",
             "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
@@ -32,11 +31,6 @@
             ],
             "styles": ["src/styles.scss"],
             "scripts": []
-            //"server": "src/main.server.ts",
-            //"prerender": true,
-            // "ssr": {
-            //   "entry": "server.ts"
-            // }
           },
           "configurations": {
             "production": {
