@@ -10,5 +10,7 @@ describe('My First Test', () => {
   it('test button', () => {
     cy.get('#test-button').click();
     cy.get('#test-data').contains('2');
+    cy.get('#test-button').click();
+    cy.get('#test-data').contains('3');
   });
 });
