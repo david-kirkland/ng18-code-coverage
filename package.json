@@ -1,21 +1,33 @@
 {
   "name": "ng18-code-coverage",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "engines": {
     "npm": "10.8.1",
     "node": "v22.4.1"
   },
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
     "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "serve:ssr:ng18-code-coverage": "node dist/ng18-code-coverage/server/server.mjs",
-    "e2e": "tsc && nyc ng e2e",
-    "ct": "tsc && nyc cypress run --component",
     "cypress:open": "cypress open",
-    "cypress:run": "cypress run"
+    "cypress:run": "cypress run",
+    "ng": "ng",
+    "serve:ssr:ng18-code-coverage": "node dist/ng18-code-coverage/server/server.mjs",
+    "start": "ng serve",
+    "test:all": "npm run test:component && npm run test:e2e",
+    "test:clean:start": "npm run test:clean && shx rm -rf .nyc_output_data/*",
+    "test:clean": "shx rm -rf coverage/* && shx rm -rf .nyc_output/*",
+    "test:component:data": "nyc report --reporter=json --report-dir=./.nyc_output_data/component",
+    "test:component": "tsc && nyc --silent cypress run --component && npm run test:component:data",
+    "test:coverage": "npm run test:clean:start && npm run test:all && npm run test:clean && npm run test:data:merge && npm run test:report",
+    "test:data:merge": "npm run test:data:move && npm run test:data:scrub && nyc merge .nyc_output_data .nyc_output/out.json",
+    "test:data:move:component": "shx mv .nyc_output_data/component/coverage-final.json .nyc_output_data/component.json",
+    "test:data:move:e2e": "shx mv .nyc_output_data/e2e/coverage-final.json .nyc_output_data/e2e.json",
+    "test:data:move": "npm run test:data:move:component && npm run test:data:move:e2e",
+    "test:data:scrub": "node nyc.util.mjs",
+    "test:e2e:data": "nyc report --reporter=json --report-dir=./.nyc_output_data/e2e/",
+    "test:e2e": "tsc && nyc --silent ng e2e --headless --watch=false && npm run test:e2e:data",
+    "test:report": "nyc report",
+    "test": "ng test",
+    "watch": "ng build --watch --configuration development"
   },
   "private": true,
   "dependencies": {
@@ -56,6 +68,7 @@
     "karma": "~6.4.0",
     "nyc": "17.0.0",
     "path": "0.12.7",
+    "shx": "0.3.4",
     "source-map-support": "^0.5.21",
     "ts-node": "^10.9.2",
     "typescript": "5.5.3"

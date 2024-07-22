@@ -19,7 +19,7 @@ describe('app.component.cy.ts', () => {
   });
   */
 
-  it('unreachable', () => {
+  it('unreachable from UI', () => {
     const component = new AppComponent();
     component.unreachableFromUI();
     expect(component.unreachableData).to.equal(2);
